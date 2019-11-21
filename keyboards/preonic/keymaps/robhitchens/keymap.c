@@ -57,8 +57,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,  \
   KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,  \
-  BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT  \
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_APP,  \
+  KC_LCTL, KC_LGUI, KC_LALT, BACKLIT,LOWER,   KC_SPC,  KC_ENT,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT  \
 ),
 
 /* Colemak
@@ -137,11 +137,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
  * `-----------------------------------------------------------------------------------'
  */
+//TODO need to finish setting up layer.
 [_RAISE] = LAYOUT_preonic_grid( \
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,  \
-  KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
-  _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS, KC_PGUP, KC_PGDN, _______, \
+  KC_F1  ,  KC_F2,  KC_F3, KC_F4 , KC_F5 ,  KC_F6,  KC_F7,  KC_F8,  KC_F9, KC_F10, KC_F11,  KC_F12, \
+  KC_DEL ,XXXXXXX,  KC_UP,XXXXXXX,XXXXXXX,XXXXXXX,KC_LBRACKET,KC_RBRACKET, KC_INS,KC_HOME,KC_PGUP, KC_PSCR,  \
+  XXXXXXX,KC_LEFT, KC_DOWN, KC_RIGHT,XXXXXXX,XXXXXXX,XXXXXXX,   KC_MINS, KC_EQL,  KC_END, KC_PGDN, KC_BSLS,\
+  _______, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, XXXXXXX, XXXXXXX, \
   _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY  \
 ),
 
@@ -160,15 +161,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 //TODO delete persistent mappings for colemak and dvorak. could potentially create persistent mapping for mouse and "hitbox" layouts.
 [_ADJUST] = LAYOUT_preonic_grid( \
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
+  _______,  QWERTY, MOUSE,   MIXBOX,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
   _______, RESET,   DEBUG,   _______, _______, _______, _______, TERM_ON, TERM_OFF,_______, _______, KC_DEL,  \
-  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  _______, _______,  _______, _______, \
+  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, _______,  _______, _______,  _______, _______, \
   _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
 )
 /* MOUSE (Lower + Raise + 2)
  * ,-----------------------------------------------------------------------------------.
- * |  ESC |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |   1  |  2   |  3   |  4   |  5   |  6   |  7   |  8   |  9   |  0   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |   W  |      |      |      |      |   U  |   I  |   O  |   P  |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -180,11 +181,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_MOUSE] = LAYOUT_preonic_grid( \
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
-  KC_NO,   RESET,   DEBUG,   KC_NO,   KC_NO,   KC_NO,   KC_NO, TERM_ON, TERM_OFF,   KC_NO,   KC_NO, KC_DEL,  \
-  KC_NO,   KC_NO, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,    KC_NO,    KC_NO,   KC_NO, KC_NO, \
-  _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+  KC_MS_ACCEL2,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,XXXXXXX,  \
+  KC_MS_ACCEL1,KC_MS_WH_LEFT,KC_MS_U,KC_MS_WH_RIGHT,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  \
+  KC_MS_ACCEL0,KC_MS_L,KC_MS_D,KC_MS_R,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, \
+  XXXXXXX,KC_MS_WH_DOWN,KC_MS_BTN3,KC_MS_WH_UP,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, \
+  KC_LCTRL,KC_LALT,KC_LGUI,XXXXXXX,LOWER,KC_MS_BTN1,KC_MS_BTN2,RAISE,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX  \
 )
 /* MIXBOX (Lower + Raise + 3)
  * ,-----------------------------------------------------------------------------------.
