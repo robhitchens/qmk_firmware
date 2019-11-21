@@ -166,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, _______,  _______, _______,  _______, _______, \
   _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
-)
+),
 /* MOUSE (Lower + Raise + 2)
  * ,-----------------------------------------------------------------------------------.
  * |      |   1  |  2   |  3   |  4   |  5   |  6   |  7   |  8   |  9   |  0   |      |
@@ -186,7 +186,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_MS_ACCEL0,KC_MS_L,KC_MS_D,KC_MS_R,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, \
   XXXXXXX,KC_MS_WH_DOWN,KC_MS_BTN3,KC_MS_WH_UP,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, \
   KC_LCTRL,KC_LALT,KC_LGUI,XXXXXXX,LOWER,KC_MS_BTN1,KC_MS_BTN2,RAISE,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX  \
-)
+),
 /* MIXBOX (Lower + Raise + 3)
  * ,-----------------------------------------------------------------------------------.
  * |  ESC |   1  |  2   |  3   |  4   |  5   |  6   |  7   |  8   |  9   |  0   |      |
