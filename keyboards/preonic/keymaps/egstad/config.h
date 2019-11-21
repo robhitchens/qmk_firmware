@@ -35,22 +35,22 @@
 // #define NO_AUTO_SHIFT_ALPHA
 
 // Lower the Auto Shift timeout variable (down)
-// KC_ASDN	  
+// KC_ASDN
 
 // Raise the Auto Shift timeout variable (up)
-// KC_ASUP	  
+// KC_ASUP
 
 // Report your current Auto Shift timeout value
-// KC_ASRP	  
+// KC_ASRP
 
 // Turns on the Auto Shift Function
-// KC_ASON	  
+// KC_ASON
 
 // Turns off the Auto Shift Function
-// KC_ASOFF	 
+// KC_ASOFF
 
 // Toggles the state of the Auto Shift feature
-// KC_ASTG	  
+// KC_ASTG
 
 
 #ifdef AUDIO_ENABLE
@@ -58,8 +58,11 @@
     // #define STARTUP_SONG SONG(NO_SOUND)
 
     #define DEFAULT_LAYER_SONGS { SONG(QWERTY_SOUND), \
+                                  SONG(MOUSE_SOUND), \
+                                  SONG(MIXBOX_SOUND), \
                                   SONG(COLEMAK_SOUND), \
-                                  SONG(DVORAK_SOUND) \
+                                  SONG(DVORAK_SOUND), \
+
                                 }
 #endif
 
