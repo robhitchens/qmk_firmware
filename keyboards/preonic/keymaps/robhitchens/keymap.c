@@ -22,7 +22,9 @@ enum preonic_layers {
   _DVORAK,
   _LOWER,
   _RAISE,
-  _ADJUST
+  _ADJUST,
+  _MOUSE,
+  _MIXBOX
 };
 
 enum preonic_keycodes {
@@ -31,7 +33,9 @@ enum preonic_keycodes {
   DVORAK,
   LOWER,
   RAISE,
-  BACKLIT
+  BACKLIT,
+  MOUSE,
+  MIXBOX
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -158,11 +162,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = LAYOUT_preonic_grid( \
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
   _______, RESET,   DEBUG,   _______, _______, _______, _______, TERM_ON, TERM_OFF,_______, _______, KC_DEL,  \
-  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______, \
+  _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  _______, _______,  _______, _______, \
   _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
 )
-
+/* MOUSE (Lower + Raise + 2)
+ * ,-----------------------------------------------------------------------------------.
+ * |  ESC |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |   W  |      |      |      |      |   U  |   I  |   O  |   P  |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |   A  |   S  |   D  |      |      |      |   J  |   K  |   L  |   ;  |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      | ENTER|      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_MOUSE] = LAYOUT_preonic_grid( \
+  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  \
+  KC_NO,   RESET,   DEBUG,   KC_NO,   KC_NO,   KC_NO,   KC_NO, TERM_ON, TERM_OFF,   KC_NO,   KC_NO, KC_DEL,  \
+  KC_NO,   KC_NO, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,    KC_NO,    KC_NO,   KC_NO, KC_NO, \
+  _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
+)
+/* MIXBOX (Lower + Raise + 3)
+ * ,-----------------------------------------------------------------------------------.
+ * |  ESC |   1  |  2   |  3   |  4   |  5   |  6   |  7   |  8   |  9   |  0   |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |   W  |      |      |      |      |   U  |   I  |   O  |   P  |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |   A  |   S  |   D  |      |      |      |   J  |   K  |   L  |   ;  |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      | ENTER|      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_MIXBOX] = LAYOUT_preonic_grid( \
+  KC_ESC,   KC_1 ,   KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,   KC_0,XXXXXXX,  \
+  XXXXXXX,XXXXXXX,  KC_W ,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,   KC_U,   KC_I,   KC_O,   KC_P,XXXXXXX,  \
+  XXXXXXX,  KC_A ,  KC_S ,  KC_D ,XXXXXXX,XXXXXXX,XXXXXXX,   KC_J,   KC_K,   KC_L,KC_SCLN,XXXXXXX, \
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, \
+  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,_______,XXXXXXX, KC_ENT,_______,KC_LEFT,KC_DOWN,KC_UP  ,KC_RIGHT  \
+)
 
 };
 
@@ -174,7 +217,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
           return false;
           break;
-        case COLEMAK:
+        /*case COLEMAK:
           if (record->event.pressed) {
             set_single_persistent_default_layer(_COLEMAK);
           }
@@ -185,7 +228,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             set_single_persistent_default_layer(_DVORAK);
           }
           return false;
-          break;
+          break;*/
+        case MOUSE:
+            if(record->event.pressed){
+                set_single_persistent_default_layer(_MOUSE);
+            }
+            return false;
+            break;
+        case MIXBOX:
+            if(record->event.pressed){
+                set_single_persistent_default_layer(_MIXBOX);
+            }
+            return false;
+            break;
         case LOWER:
           if (record->event.pressed) {
             layer_on(_LOWER);
