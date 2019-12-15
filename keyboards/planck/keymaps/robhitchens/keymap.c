@@ -37,6 +37,7 @@ enum planck_keycodes {
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
+#define FUNCK MO(_FUNCK)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -209,17 +210,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case FUNCK:
+    /*case FUNCK:
       if(record->event.pressed){
         print("I'm not sure if this is the intended use.");
-        layer_on(_FUNCK);
-        update_tri_layer(_FUNCK, _LOWER, _RAISE);
+        layer_switch(_FUNCK);
       }else{
         layer_off(_FUNCK);
-        update_tri_layer(_FUNCK, _LOWER, _RAISE);
       }
       return false;
-      break;
+      break;*/
     case BACKLIT:
       if (record->event.pressed) {
         register_code(KC_RSFT);
