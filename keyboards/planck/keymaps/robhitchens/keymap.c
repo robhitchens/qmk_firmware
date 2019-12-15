@@ -210,9 +210,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     case FUNCK:
-      if(record -> event.pressed){
+      if(record->event.pressed){
         print("I'm not sure if this is the intended use.");
-        layer_state_set_user(_FUNCK);
+        layer_on(_FUNCK);
+        update_tri_layer(_FUNCK, _LOWER, _RAISE);
+      }else{
+        layer_off(_FUNCK);
+        update_tri_layer(_FUNCK, _LOWER, _RAISE);
       }
       return false;
       break;
