@@ -210,15 +210,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    /*case FUNCK:
-      if(record->event.pressed){
-        print("I'm not sure if this is the intended use.");
-        layer_switch(_FUNCK);
-      }else{
-        layer_off(_FUNCK);
-      }
-      return false;
-      break;*/
     case BACKLIT:
       if (record->event.pressed) {
         register_code(KC_RSFT);
