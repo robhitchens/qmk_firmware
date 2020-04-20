@@ -184,10 +184,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * TODO: note this layout will probably work better for games more than day to day tasks.
  */
 [_FUNCK] = LAYOUT_planck_grid(
-    _______,    KC_1,    KC_2,    KC_3, _______, _______, _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4, _______,
-    _______,    KC_4,    KC_5,    KC_6, _______, _______, _______,   KC_F5,   KC_F6,   KC_F7,   KC_F8, _______,
-    _______,    KC_7,    KC_8,    KC_9, _______, _______, _______,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______,
-    _______,    KC_0, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    _______,    KC_1,    KC_2,    KC_3,  KC_PLUS, _______, _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4, _______,
+    _______,    KC_4,    KC_5,    KC_6, KC_MINUS, _______, _______,   KC_F5,   KC_F6,   KC_F7,   KC_F8, _______,
+    _______,    KC_7,    KC_8,    KC_9,  KC_ASTR, _______, _______,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______,
+    _______,    KC_0, KC_SLSH, _______,  _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 
