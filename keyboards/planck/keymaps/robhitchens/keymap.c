@@ -109,10 +109,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_planck_grid( \
-  KC_TILD, KC_MS_WH_LEFT,    KC_MS_U, KC_MS_WH_RIGHT, _______,      KC_EXLM,    KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN,   KC_RPRN,  KC_DEL, \
-  _______,       KC_MS_L,    KC_MS_D,        KC_MS_R, _______, KC_AMPERSAND,     KC_DLR, KC_UNDS, KC_PLUS, KC_LCBR,   KC_RCBR, KC_PIPE, \
-  _______, KC_MS_WH_DOWN, KC_MS_BTN3,    KC_MS_WH_UP, _______,      KC_HASH,      KC_AT, KC_PERC,   KC_LT,   KC_GT, KC_BSLASH, _______, \
-  _______,       _______,    _______,        _______, _______,   KC_MS_BTN1, KC_MS_BTN2, _______, KC_MNXT, KC_VOLD,   KC_VOLU, KC_MPLY  \
+  KC_TILD, KC_MS_WH_LEFT,    KC_MS_U, KC_MS_WH_RIGHT, _______,      KC_EXLM,    KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_DEL, \
+  _______,       KC_MS_L,    KC_MS_D,        KC_MS_R, _______, KC_AMPERSAND,     KC_DLR, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, \
+  _______, KC_MS_WH_DOWN, KC_MS_BTN3,    KC_MS_WH_UP, _______,      KC_HASH,      KC_AT, KC_PERC,   KC_LT,   KC_GT, KC_QUES, _______, \
+  _______,       _______,    _______,        _______, _______,   KC_MS_BTN1, KC_MS_BTN2, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY  \
 ),
 
 /* Raise
@@ -127,10 +127,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_grid( \
-   KC_GRV, XXXXXXX,   KC_UP, XXXXXXX, _______, _______,  KC_LBRACKET,KC_RBRACKET,  KC_INS, KC_HOME, KC_PGUP, KC_PSCR, \
-  _______, KC_LEFT, KC_DOWN,KC_RIGHT, _______, _______,      _______,    KC_MINS,  KC_EQL,  KC_END, KC_PGDN, KC_BSLS, \
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______,      _______,    _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, \
-  _______, _______, _______, _______, _______, _______,      _______,    _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY  \
+       KC_GRV, XXXXXXX,   KC_UP, XXXXXXX, _______, _______,  KC_LBRACKET,KC_RBRACKET,  KC_INS, KC_HOME,   KC_PGUP, KC_PSCR, \
+      _______, KC_LEFT, KC_DOWN,KC_RIGHT, _______, _______,      _______,    KC_MINS,  KC_EQL,  KC_END,   KC_PGDN, KC_BSLS, \
+  KC_CAPSLOCK, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______,      _______,    _______, XXXXXXX, XXXXXXX, KC_BSLASH, _______, \
+      _______, _______, _______, _______, _______, _______,      _______,    _______, KC_MNXT, KC_VOLD,   KC_VOLU, KC_MPLY  \
 ),
 
 /* Plover layer (http://opensteno.org)
