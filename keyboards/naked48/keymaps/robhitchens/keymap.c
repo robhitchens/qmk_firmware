@@ -190,6 +190,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             update_tri_layer(_LOWER, _RAISE, _ADJUST);
         }
         break;
+    case FUNCK:
+      if(record->event.pressed){
+        layer_on(_FUNCK);
+      }else{
+        layer_off(_FUNCK);
+      }
+      break;
     default:
       result = true;
       break;
