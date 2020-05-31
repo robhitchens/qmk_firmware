@@ -63,10 +63,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL, KC_LGUI, KC_LALT, FUNCK, LOWER, TAPSPACE, TAPSPACE, RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
 ),
 [_SPACEFN] = LAYOUT_planck_grid(
-      KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_GRV,
-      KC_LCTL,  KC_GRV, KC_MINS,  KC_EQL, KC_BSLS, KC_PIPE, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, KC_DQUO,
-    KC_LSHIFT, KC_TILD, KC_UNDS, KC_PLUS, _______, KC_TILD, _______,   KC_LT,   KC_GT, KC_QUES,  KC_ENT,
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+       KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_GRV,
+      KC_LCTL, XXXXXXX,  KC_GRV, KC_MINS,  KC_EQL, KC_BSLS, KC_PIPE, KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, KC_DQUO,
+    KC_LSHIFT, XXXXXXX, KC_TILD, KC_UNDS, KC_PLUS, _______, KC_TILD, _______,   KC_LT,   KC_GT, KC_QUES,  KC_ENT,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 /* Colemak
  * ,-----------------------------------------------------------------------------------.
