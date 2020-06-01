@@ -20,6 +20,7 @@
 
 enum planck_layers {
   _QWERTY,
+  _GAMEMODE,
   _SPACEFN,
   _LOWER,
   _RAISE,
@@ -30,6 +31,7 @@ enum planck_layers {
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
+  GAMEMODE,
   SPACEFN,
   PLOVER,
   BACKLIT,
@@ -42,6 +44,7 @@ enum planck_keycodes {
 #define FUNCK MO(_FUNCK)
 #define SPACEFN MO(_SPACEFN)
 #define TAPSPACE LT(SPACEFN, KC_SPC)
+#define GUISPACE LT(SPACEFN, KC_LGUI)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -62,6 +65,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT,    KC_Z,    KC_X,  KC_C,  KC_V,     KC_B,     KC_N,  KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
      KC_ESC, KC_LGUI, KC_LALT, FUNCK, LOWER, TAPSPACE, TAPSPACE, RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
 ),
+[_GAMEMODE] = LAYOUT_planck_grid(
+     KC_TAB,     KC_Q,    KC_W,  KC_E,  KC_R,     KC_T,     KC_Y,  KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+    KC_LCTL,     KC_A,    KC_S,  KC_D,  KC_F,     KC_G,     KC_H,  KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+    KC_LSFT,     KC_Z,    KC_X,  KC_C,  KC_V,     KC_B,     KC_N,  KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
+     KC_ESC, GUISPACE, KC_LALT, FUNCK, LOWER,   KC_SPC,   KC_SPC, RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT),
 [_SPACEFN] = LAYOUT_planck_grid(
        KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_GRV,
       KC_LCTL, XXXXXXX,  KC_GRV, KC_MINS,  KC_EQL, KC_BSLS, KC_PIPE, KC_LBRC, KC_RBRC, XXXXXXX, KC_COLN, KC_DQUO,
@@ -172,9 +180,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_ADJUST] = LAYOUT_planck_grid(
+[_ADJUST] = LAYOUT_planck_grid(//TODO add switch for qwerty game mode
     _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  _______,  _______,  PLOVER,  _______,
+    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY, GAMEMODE,  _______,  PLOVER,  _______,
     _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 ),
@@ -216,6 +224,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         print("mode just switched to qwerty and this is a huge string\n");
         set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case GAMEMODE:
+      if(record->event.pressed){
+        print("mode just switched to gamemode");
+        set_single_persistent_default_layer(_GAMEMODE);
       }
       return false;
       break;
