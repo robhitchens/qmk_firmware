@@ -20,12 +20,14 @@ enum hhkb_keycodes {
     BASE = SAFE_RANGE,
     GAMEMODE,
     SPACEFN,
+    RAISE,
+    LOWER,
     FUNCK
 };
 
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
-#define FUNCK MO(_FUNCK)
+//#define LOWER MO(_LOWER)
+//#define RAISE MO(_RAISE)
+//#define FUNCK MO(_FUNCK)
 #define SPACEFN MO(_SPACEFN)
 #define TAPSPACE LT(SPACEFN, KC_SPC)
 #define GUISPACE LT(SPACEFN, KC_RGUI)
@@ -130,6 +132,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
         }
         return false;
         break;
+    case LOWER:
+        if(record->event.pressed){
+            layer_on(_LOWER);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }else{
+            layer_off(_LOWER);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }
+        break;
+    case RAISE:
+        if(record->event.pressed){
+            layer_on(_RAISE);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }else{
+            layer_off(_RAISE);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }
     }
     return true;
 }
