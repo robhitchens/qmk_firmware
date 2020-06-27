@@ -17,6 +17,11 @@
 #include QMK_KEYBOARD_H
 #include "muse.h"
 
+bool is_alt_tab_active = false;
+uint16_t alt_tab_timer = 0;
+bool is_shift_alt_tab_active = false;
+uint16_t shift_alt_tab_timer = 0;
+
 
 enum planck_layers {
   _QWERTY,
@@ -36,7 +41,9 @@ enum planck_keycodes {
   PLOVER,
   BACKLIT,
   EXT_PLV,
-  FUNCK
+  FUNCK,
+  ALT_TAB,
+  ALSFH_TAB
 };
 
 #define LOWER MO(_LOWER)
@@ -144,10 +151,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_planck_grid( \
-      _______, XXXXXXX,   KC_UP, XXXXXXX, _______, _______, _______, KC_PSCR,  KC_INS, KC_HOME, KC_PGUP,  KC_DEL, \
-      _______, KC_LEFT, KC_DOWN,KC_RIGHT, _______, KC_CAPS,  KC_ESC,  KC_APP, _______,  KC_END, KC_PGDN, _______, \
-      _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, \
-      _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY  \
+      _______, ALSFH_TAB,   KC_UP, ALT_TAB, _______, _______, _______, KC_PSCR,  KC_INS, KC_HOME, KC_PGUP,  KC_DEL, \
+      _______,   KC_LEFT, KC_DOWN,KC_RIGHT, _______, KC_CAPS,  KC_ESC,  KC_APP, _______,  KC_END, KC_PGDN, _______, \
+      _______,   XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, \
+      _______,   _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY  \
 ),
 
 /* Plover layer (http://opensteno.org)
@@ -220,6 +227,31 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case ALT_TAB:
+        if(record->event.pressed){
+            if(!is_alt_tab_active){
+                is_alt_tab_active = true;
+                register_code(KC_LALT);
+            }
+            alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+        }else{
+            unregister_code(KC_TAB);
+        }
+        break;
+    case ALSFH_TAB:
+        if(record->event.pressed){
+            if(!is_shift_alt_tab_active){
+                is_shift_alt_tab_active = true;
+                register_code(KC_LALT);
+                register_code(KC_LSHIFT);
+            }
+            shift_alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+        }else{
+            unregister_code(KC_TAB);
+        }
+        break;
     case QWERTY:
       if (record->event.pressed) {
         print("mode just switched to qwerty and this is a huge string\n");
@@ -353,6 +385,19 @@ void dip_switch_update_user(uint8_t index, bool active) {
 }
 
 void matrix_scan_user(void) {
+    if(is_alt_tab_active){
+        if(timer_elapsed(alt_tab_timer) > 500){
+            unregister_code(KC_LALT);
+            is_alt_tab_active = false;
+        }
+    }
+    if(is_shift_alt_tab_active){
+        if(timer_elapsed(shift_alt_tab_timer) > 500){
+            unregister_code(KC_LALT);
+            unregister_code(KC_LSHIFT);
+            is_shift_alt_tab_active = false;
+        }
+    }
 #ifdef AUDIO_ENABLE
     if (muse_mode) {
         if (muse_counter == 0) {
