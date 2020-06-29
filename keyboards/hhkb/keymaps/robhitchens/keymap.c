@@ -6,6 +6,11 @@
 //#define BASE 0
 //#define HHKB 1
 
+bool is_alt_tab_active = false;
+uint16_t alt_tab_timer = 0;
+bool is_shift_alt_tab_active = false;
+uint16_t shift_alt_tab_timer = 0;
+
 enum hhkb_layers {
     _BASE,
     _GAMEMODE,
@@ -22,7 +27,9 @@ enum hhkb_keycodes {
     SPACEFN,
     RAISE,
     LOWER,
-    FUNCK
+    FUNCK,
+    ALT_TAB,
+    ALSFH_TAB
 };
 
 //#define LOWER MO(_LOWER)
@@ -80,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_RAISE] = LAYOUT( //  default layer
         _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-        _______, XXXXXXX,   KC_UP,  XXXXXXX, _______, _______, _______, KC_PSCR,  KC_INS, KC_HOME, KC_PGUP, XXXXXXX, _______, KC_DEL,
+        _______, ALSFH_TAB,   KC_UP, ALT_TAB, _______, _______, _______, KC_PSCR,  KC_INS, KC_HOME, KC_PGUP, XXXXXXX, _______, KC_DEL,
         _______, KC_LEFT, KC_DOWN, KC_RIGHT, _______, KC_CAPS,  KC_ESC,  KC_APP, XXXXXXX,  KC_END, KC_PGDN, XXXXXXX, _______,
         _______, XXXXXXX, XXXXXXX,  XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_RGUI,
         _______, _______, /*        */ _______, _______, _______
@@ -120,6 +127,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
     switch (keycode)
     {
+    case ALT_TAB:
+        if(record->event.pressed){
+            if(!is_alt_tab_active){
+                is_alt_tab_active = true;
+                register_code(KC_LALT);
+            }
+            alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+        }else{
+            unregister_code(KC_TAB);
+        }
+        break;
+    case ALSFH_TAB:
+        if(record->event.pressed){
+            if(!is_shift_alt_tab_active){
+                is_shift_alt_tab_active = true;
+                register_code(KC_LALT);
+                register_code(KC_LSHIFT);
+            }
+            shift_alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+        }else{
+            unregister_code(KC_TAB);
+        }
+        break;
     case BASE:
         if(record->event.pressed){
             set_single_persistent_default_layer(_BASE);
@@ -151,4 +183,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
         }
     }
     return true;
+}
+
+void matrix_scan_user(void){
+    if(is_alt_tab_active){
+        if(timer_elapsed(alt_tab_timer) > 500){
+            unregister_code(KC_LALT);
+            is_alt_tab_active = false;
+        }
+    }
+    if(is_shift_alt_tab_active){
+        if(timer_elapsed(shift_alt_tab_timer) > 500){
+            unregister_code(KC_LALT);
+            unregister_code(KC_LSHIFT);
+            is_shift_alt_tab_active = false;
+        }
+    }
 }
