@@ -10,6 +10,8 @@ bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
 bool is_shift_alt_tab_active = false;
 uint16_t shift_alt_tab_timer = 0;
+uint16_t macro_max_timer = 1000;
+
 
 enum hhkb_layers {
     _BASE,
@@ -187,13 +189,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
 
 void matrix_scan_user(void){
     if(is_alt_tab_active){
-        if(timer_elapsed(alt_tab_timer) > 500){
+        if(timer_elapsed(alt_tab_timer) > macro_max_timer){
             unregister_code(KC_LALT);
             is_alt_tab_active = false;
         }
     }
     if(is_shift_alt_tab_active){
-        if(timer_elapsed(shift_alt_tab_timer) > 500){
+        if(timer_elapsed(shift_alt_tab_timer) > macro_max_timer){
             unregister_code(KC_LALT);
             unregister_code(KC_LSHIFT);
             is_shift_alt_tab_active = false;
