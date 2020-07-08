@@ -10,7 +10,7 @@ bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
 bool is_shift_alt_tab_active = false;
 uint16_t shift_alt_tab_timer = 0;
-uint16_t macro_max_timer = 1000;
+uint16_t macro_max_timer = 750;
 
 
 enum hhkb_layers {
