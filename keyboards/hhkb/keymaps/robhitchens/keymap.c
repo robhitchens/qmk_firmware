@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______, ALSFH_TAB,   KC_UP, ALT_TAB, _______, _______, _______, KC_PSCR,  KC_INS, KC_HOME, KC_PGUP, XXXXXXX, _______, KC_DEL,
         _______, KC_LEFT, KC_DOWN, KC_RIGHT, _______, KC_CAPS,  KC_ESC,  KC_APP, XXXXXXX,  KC_END, KC_PGDN, XXXXXXX, _______,
-        _______, XXXXXXX, XXXXXXX,  XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_RGUI,
+        _______, XXXXXXX, XXXXXXX,  XXXXXXX, _______, _______, _______, KC_SLCK, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_RGUI,
         _______, _______, /*        */ _______, _______, _______
     ),
     [_ADJUST] = LAYOUT( //  default layer
