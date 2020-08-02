@@ -14,6 +14,7 @@ BOOTLOADER = atmel-dfu
 # Build Options
 #   comment out to disable the options.
 #
+LINK_TIME_OPTIMIZATION_ENABLE = yes
 BOOTMAGIC_ENABLE = yes # Virtual DIP switch configuration
 MOUSEKEY_ENABLE = yes  # Mouse keys
 EXTRAKEY_ENABLE = yes  # Audio control and System control
@@ -29,7 +30,7 @@ CUSTOM_MATRIX = yes    # Custom matrix file for the HHKB
 # BLUETOOTH_ENABLE = yes  # Enable Bluetooth with the Adafruit EZ-Key HID
 
 
-# HHKB_RN42_ENABLE = yes  # Enable support for hasu's BT alt controller -- code borrowed from tmk source tree.
+HHKB_RN42_ENABLE = yes  # Enable support for hasu's BT alt controller -- code borrowed from tmk source tree.
 
 # Either uncomment the HHKB_RN42_ENABLE line above, or run make enabling the
 # feature. Be sure to clean any existing build before trying to enable rn42
