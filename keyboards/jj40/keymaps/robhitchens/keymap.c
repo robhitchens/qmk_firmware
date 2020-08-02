@@ -24,6 +24,7 @@ enum layers {
   _QWERTY,
   _GAMEMODE,
   _SPACEFN,
+  _LEFTARROWFN,
   _LOWER,
   _RAISE,
   _PLOVER,
@@ -35,6 +36,7 @@ enum keycodes {
   QWERTY = SAFE_RANGE,
   GAMEMODE,
   SPACEFN,
+  LEFTARROWFN,
   PLOVER,
   BACKLIT,
   EXT_PLV,
@@ -47,6 +49,8 @@ enum keycodes {
 #define RAISE MO(_RAISE)
 #define FUNCK MO(_FUNCK)
 #define SPACEFN MO(_SPACEFN)
+#define LEFTARROWFN MO(_LEFTARROWFN)
+#define TAPLEFTARROW LT(LEFTARROWFN, KC_LEFT)
 #define TAPSPACE LT(SPACEFN, KC_SPC)
 #define GUISPACE LT(SPACEFN, KC_LGUI)
 
@@ -55,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_TAB,    KC_Q,    KC_W,  KC_E,  KC_R,     KC_T,     KC_Y,  KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
     KC_LCTL,    KC_A,    KC_S,  KC_D,  KC_F,     KC_G,     KC_H,  KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
     KC_LSFT,    KC_Z,    KC_X,  KC_C,  KC_V,     KC_B,     KC_N,  KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
-     KC_ESC, KC_LGUI, KC_LALT, FUNCK, LOWER, TAPSPACE, RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+     KC_ESC, KC_LGUI, KC_LALT, FUNCK, LOWER, TAPSPACE, RAISE, TAPLEFTARROW, KC_DOWN,   KC_UP, KC_RGHT
 ),
 [_GAMEMODE] = LAYOUT_planck_mit(
      KC_TAB,     KC_Q,    KC_W,  KC_E,  KC_R,     KC_T,     KC_Y,  KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
@@ -66,6 +70,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  KC_GRV,
       KC_LCTL, XXXXXXX,  KC_GRV, KC_MINS,  KC_EQL, KC_BSLS, KC_PIPE, KC_LBRC, KC_RBRC, XXXXXXX, KC_COLN, KC_DQUO,
     KC_LSHIFT, XXXXXXX, KC_TILD, KC_UNDS, KC_PLUS, XXXXXXX, KC_LCBR, KC_RCBR,   KC_LT,   KC_GT, KC_QUES,  KC_ENT,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+[_LEFTARROWFN] = LAYOUT_planck_mit(
+      _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 /* Lower
@@ -136,10 +146,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *
  */
 [_FUNCK] = LAYOUT_planck_mit(
-    KC_PLUS,     KC_1,    KC_2,    KC_3,  _______, _______, _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4, _______,
-    KC_MINUS,    KC_4,    KC_5,    KC_6,  _______, _______, _______,   KC_F5,   KC_F6,   KC_F7,   KC_F8, _______,
-    KC_ASTR,     KC_7,    KC_8,    KC_9,  _______, _______, _______,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______,
-    KC_SLSH,     KC_0,  KC_DOT, _______,  _______, _______, _______, _______, _______, _______, _______
+    _______,     KC_1,    KC_2,    KC_3,  KC_PLUS, _______, _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4, _______,
+    _______,     KC_4,    KC_5,    KC_6, KC_MINUS, _______, _______,   KC_F5,   KC_F6,   KC_F7,   KC_F8, _______,
+    _______,     KC_7,    KC_8,    KC_9,  KC_ASTR, _______, _______,   KC_F9,  KC_F10,  KC_F11,  KC_F12, _______,
+    _______,     KC_0,  KC_DOT, _______,  KC_SLSH, _______, _______, _______, _______, _______, _______
 ),
 };
 
