@@ -16,6 +16,7 @@ enum layer_number {
   _QWERTY = 0,
   _GAMEMODE,
   _SPACEFN,
+  _LEFTARROWFN,
   _LOWER,
   _RAISE,
   _ADJUST,
@@ -35,6 +36,8 @@ enum custom_keycodes {
 #define SPACEFN MO(_SPACEFN)
 #define TAPSPACE LT(SPACEFN, KC_SPC)
 #define GUISPACE LT(SPACEFN, KC_LGUI)
+#define LEFTARROWFN MO(_LEFTARROWFN)
+#define TAPLEFTARROW LT(LEFTARROWFN, KC_LEFT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT(
@@ -45,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+-------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------+--------+--------|
-                KC_ESC, KC_LGUI, KC_LALT,   FUNCK,   LOWER,TAPSPACE,TAPSPACE,   RAISE, KC_LEFT, KC_DOWN,  KC_UP,KC_RIGHT
+                KC_ESC, KC_LGUI, KC_LALT,   FUNCK,   LOWER,TAPSPACE, KC_RSFT,   RAISE, TAPLEFTARROW, KC_DOWN,  KC_UP,KC_RIGHT
           //`------------------------------------------------------------------------------------------------------------'
   ),
   [_GAMEMODE] = LAYOUT(
@@ -56,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+-------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------+--------+--------|
-                KC_ESC,GUISPACE, KC_LALT,   FUNCK,   LOWER,  KC_SPC,  KC_SPC,   RAISE, KC_LEFT, KC_DOWN,  KC_UP,KC_RIGHT
+                KC_ESC,GUISPACE, KC_LALT,   FUNCK,   LOWER,  KC_SPC, KC_RSFT,   RAISE, KC_LEFT, KC_DOWN,  KC_UP,KC_RIGHT
           //`------------------------------------------------------------------------------------------------------------'
   ),
   [_SPACEFN] = LAYOUT(
@@ -131,6 +134,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //   _______, KC_MS_WH_DOWN,   KC_MS_BTN3,   KC_MS_WH_UP,   KC_F10,  KC_F11,  KC_F12,_______,KC_LEFT_ANGLE_BRACKET,KC_RIGHT_ANGLE_BRACKET, KC_BSLASH, _______,
 //   _______, _______, _______, _______, _______, KC_MS_BTN1, KC_MS_BTN2, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 // ),//TODO come back to this.
+[_LEFTARROWFN] = LAYOUT_planck_mit(
+      _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
 [_LOWER] = LAYOUT(
   //,------------------------------------------------------------------|                       |-----------------------------------------------------.
       _______, KC_MS_WH_LEFT, KC_MS_U, KC_MS_WH_RIGHT, _______, _______,                         _______, _______, _______, _______, _______, _______,
