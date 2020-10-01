@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LEFT, KC_RIGHT, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
   KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_DOWN, KC_UP, KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,  \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_HOME,  KC_END, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT, \
-  KC_LALT, GUISPACE, KC_LALT, FUNCK, LOWER,  KC_SPC,  KC_SPC,  KC_RSFT,  KC_RSFT,  RAISE, KC_PGDN, KC_PGUP, GUISPACE, KC_RALT  \
+  KC_LALT, GUISPACE, KC_LALT, LOWER, FUNCK,   KC_SPC,  KC_SPC,  KC_RSFT,  KC_RSFT,  RAISE, KC_PGDN, KC_PGUP, GUISPACE, KC_RALT  \
 ),
 [_SPACEFN] = LAYOUT_ortho_5x14(
   KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F11,  KC_F12,  KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10, KC_GRV, \
