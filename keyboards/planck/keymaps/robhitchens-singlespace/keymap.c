@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, ALSFH_TAB,   KC_UP, ALT_TAB, _______, _______, _______, KC_PSCR,  KC_INS, KC_HOME, KC_PGUP,  KC_DEL, \
       _______,   KC_LEFT, KC_DOWN,KC_RIGHT, _______, KC_CAPS,  KC_ESC,  KC_APP, _______,  KC_END, KC_PGDN, _______, \
       _______,   XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, \
-      _______,   _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY  \
+      _______,   _______, _______, _______, _______, KC_RSFT, KC_RSFT, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY  \
 ),
 
 /* Plover layer (http://opensteno.org)
