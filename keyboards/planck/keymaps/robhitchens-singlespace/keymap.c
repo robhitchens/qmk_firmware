@@ -38,10 +38,12 @@ enum planck_layers {
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
+  //LOWER,
+  //RAISE,
   GAMEMODE,
-  SPACEFN,
+  //SPACEFN,
   LEFTARROWFN,
-  SHIFTL,
+  //SHIFTL,
   PLOVER,
   BACKLIT,
   EXT_PLV,
@@ -129,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, ALSFH_TAB,   KC_UP, ALT_TAB, _______, _______, _______, KC_PSCR,  KC_INS, KC_HOME, KC_PGUP,  KC_DEL, \
       _______,   KC_LEFT, KC_DOWN,KC_RIGHT, _______, KC_CAPS,  KC_ESC,  KC_APP, _______,  KC_END, KC_PGDN, _______, \
       _______,   XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, _______, _______, \
-      _______,   _______, _______, _______, _______,  SHIFTL,  SHIFTL, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY  \
+      _______,   _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY  \
 ),
 [_SHIFTL] = LAYOUT_planck_grid(
     _______,    S(KC_Q), S(KC_W),  S(KC_E),  S(KC_R), S(KC_T),  S(KC_Y),  S(KC_U), S(KC_I),  S(KC_O), S(KC_P), _______,
@@ -202,7 +204,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #endif
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+  state = update_tri_layer_state(state, _SPACEFN, _RAISE, _SHIFTL);
+  return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
