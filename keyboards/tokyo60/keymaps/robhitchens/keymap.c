@@ -13,6 +13,7 @@ enum tokyo60_layers {
     _SPACEFN,
     _LOWER,
     _RAISE,
+    _SHIFTL,
     _ADJUST,
     _FUNCK
 };
@@ -29,6 +30,8 @@ enum tokyo60_keycodes {
     ALSFH_TAB
 };
 
+#define RAISE MO(_RAISE)
+#define LOWER MO(_LOWER)
 #define SPACEFN MO(_SPACEFN)
 #define TAPSPACE LT(SPACEFN, KC_SPC)
 #define GUISPACE LT(SPACEFN, KC_RGUI)
@@ -86,6 +89,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, XXXXXXX, XXXXXXX,  XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, KC_RGUI,
         _______, _______, /*        */ _______, _______, _______
     ),
+    [_SHIFTL] = LAYOUT_60_hhkb( //  default layer
+        _______, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), S(KC_MINS), S(KC_EQL), S(KC_BSLS), S(KC_GRV),
+        _______, S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), S(KC_LBRC), S(KC_RBRC), _______,
+        _______, S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), S(KC_H), S(KC_J), S(KC_K), S(KC_L), S(KC_SCLN), S(KC_QUOT), _______,
+        _______, S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), S(KC_N), S(KC_M), S(KC_COMM), S(KC_DOT), S(KC_SLSH), _______, _______,
+        _______, _______, /*        */ _______, _______, _______
+    ),
+
     [_ADJUST] = LAYOUT_60_hhkb( //  default layer
         _______,    BASE, GAMEMODE, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______,   RESET,    DEBUG, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, _______,
@@ -94,6 +105,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, /*        */ _______, _______, _______
     ),
 };
+
+layer_state_t layer_state_set_user(layer_state_t state){
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    state = update_tri_layer_state(state, _SPACEFN, _LOWER, _SHIFTL);
+    return state;
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record){
     switch (keycode)
@@ -135,23 +152,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
         }
         return false;
         break;
-    case LOWER:
-        if(record->event.pressed){
-            layer_on(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-        }else{
-            layer_off(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-        }
-        break;
-    case RAISE:
-        if(record->event.pressed){
-            layer_on(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-        }else{
-            layer_off(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-        }
     }
     return true;
 }
