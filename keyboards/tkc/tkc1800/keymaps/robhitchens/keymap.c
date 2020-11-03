@@ -17,12 +17,12 @@
 #include QMK_KEYBOARD_H
 
 //Layers
-
+/*
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
 bool is_shift_alt_tab_active = false;
 uint16_t shift_alt_tab_timer = 0;
-
+*/
 enum layers {
   _BASE,
   _GAMEMODE,
@@ -30,10 +30,9 @@ enum layers {
   _LOWER,
   _RAISE,
   _SHIFTL,
-  _PLOVER,
-  _ADJUST,
-  _FUNCK,
-  _SPECL
+  _ADJUST
+  /*_FUNCK,
+  _SPECL*/
 };
 
 /*enum {
@@ -45,19 +44,19 @@ enum keycodes {
   BASE = 0,
   GAMEMODE,
   SPACEFN,
-  LEFTARROWFN,
-  PLOVER,
-  BACKLIT,
-  EXT_PLV,
-  FUNCK,
+  LOWER,
+  RAISE,
+  SHIFTL,
+  ADJUST,
+  /*FUNCK,*/
   ALT_TAB,
   ALSFH_TAB
 };
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
-#define FUNCK MO(_FUNCK)
-#define SPECL MO(_SPECL)
+/*#define FUNCK MO(_FUNCK)*/
+/*#define SPECL MO(_SPECL)*/
 #define SPACEFN MO(_SPACEFN)
 //#define TAPLEFTARROW LT(LEFTARROWFN, KC_LEFT)
 #define TAPSPACE LT(SPACEFN, KC_SPC)
@@ -99,6 +98,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  XXXXXXX, XXXXXXX, KC_TILD, KC_UNDS, KC_PLUS, XXXXXXX, KC_LCBR, KC_RCBR, KC_LT,   KC_GT,   KC_QUES, _______,         KC_UP,    _______,  _______, _______, XXXXXXX, \
     _______,  _______, _______,                   _______,                               XXXXXXX, _______, _______,      KC_LEFT, KC_DOWN, KC_RGHT,      _______, _______, _______  \
   ),
+  [_GAMEMODE] = LAYOUT(
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                    _______,  _______, _______, _______, \
+                                                                                                                                            _______,  _______, _______, _______, \
+    KC_ESC,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PIPE, XXXXXXX, _______,  _______, _______, _______, \
+    _______,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, _______,          _______,  _______, _______, _______, \
+    _______,  XXXXXXX, KC_GRV,  KC_MINS, KC_EQL,  KC_BSLS, KC_PIPE, KC_LBRC, KC_RCBR, XXXXXXX, KC_COLN, KC_DQUO, XXXXXXX, _______,          _______,  _______, _______, _______, \
+    _______,  XXXXXXX, XXXXXXX, KC_TILD, KC_UNDS, KC_PLUS, XXXXXXX, KC_LCBR, KC_RCBR, KC_LT,   KC_GT,   KC_QUES, _______,         KC_UP,    _______,  _______, _______, XXXXXXX, \
+    _______,  _______, _______,                   _______,                               XXXXXXX, _______, _______,      KC_LEFT, KC_DOWN, KC_RGHT,      _______, _______, _______  \
+  ),
   [_LOWER] = LAYOUT(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                    _______,  _______, _______, _______, \
                                                                                                                                             _______,  _______, _______, _______, \
@@ -111,8 +119,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RAISE] = LAYOUT(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                    _______,  _______, _______, _______, \
                                                                                                                                             _______,  _______, _______, _______, \
-    _______,  _______,       _______,  _______,  _______,   _______,  _______,  _______,  _______, _______,  _______, _______,  _______,  _______, XXXXXXX, _______,  _______, _______, _______, \
-    _______,  ALSFH_TAB, KC_UP,  ALT_TAB, _______,  _______, _______, KC_PSCR, KC_INS, KC_HOME, KC_PGUP, _______, _______, _______,          _______,  _______, _______, _______, \
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, XXXXXXX, _______,  _______, _______, _______, \
+    _______,  _______, KC_UP,  _______, _______,  _______, _______, KC_PSCR, KC_INS, KC_HOME, KC_PGUP, _______, _______, _______,          _______,  _______, _______, _______, \
     _______,  KC_LEFT,   KC_DOWN,KC_RIGHT, _______,  KC_CAPS, KC_ESC, KC_APP, _______, KC_END, KC_PGDN, _______, XXXXXXX, _______,          _______,  _______, _______, _______, \
     _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,   _______,   _______, _______,         KC_UP,    _______,  _______, _______, XXXXXXX, \
     _______,  _______, _______,                   _______,                               XXXXXXX, _______, _______,      KC_LEFT, KC_DOWN, KC_RGHT,      _______, _______, _______  \
@@ -162,6 +170,21 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case BASE:
+      if (record->event.pressed) {
+        print("mode just switched to qwerty and this is a huge string\n");
+        set_single_persistent_default_layer(_BASE);
+      }
+      return false;
+      break;
+    case GAMEMODE:
+      if(record->event.pressed){
+        print("mode just switched to gamemode");
+        set_single_persistent_default_layer(_GAMEMODE);
+      }
+      return false;
+      break;
+      /*
     case ALT_TAB:
         if(record->event.pressed){
             if(!is_alt_tab_active){
@@ -186,21 +209,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }else{
             unregister_code(KC_TAB);
         }
-        break;
-    case BASE:
-      if (record->event.pressed) {
-        print("mode just switched to qwerty and this is a huge string\n");
-        set_single_persistent_default_layer(_BASE);
-      }
-      return false;
-      break;
-    case GAMEMODE:
-      if(record->event.pressed){
-        print("mode just switched to gamemode");
-        set_single_persistent_default_layer(_GAMEMODE);
-      }
-      return false;
-      break;
+        break;*/
       /*
     case BACKLIT:
       if (record->event.pressed) {
@@ -222,7 +231,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
-
+/*
 void matrix_scan_user(void) {
     if(is_alt_tab_active){
         if(timer_elapsed(alt_tab_timer) > 500){
@@ -238,7 +247,7 @@ void matrix_scan_user(void) {
         }
     }
 }
-
+*/
 
 #ifdef OLED_DRIVER_ENABLE
 void oled_task_user(void) {
