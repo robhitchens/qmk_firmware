@@ -34,7 +34,7 @@ enum layers {
   _ADJUST,
   _FUNCK,
   _SPECL
-}
+};
 
 /*enum {
   BASE = 0,
@@ -52,7 +52,7 @@ enum keycodes {
   FUNCK,
   ALT_TAB,
   ALSFH_TAB
-}
+};
 
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
@@ -112,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                    _______,  _______, _______, _______, \
                                                                                                                                             _______,  _______, _______, _______, \
     _______,  _______,       _______,  _______,  _______,   _______,  _______,  _______,  _______, _______,  _______, _______,  _______,  _______, XXXXXXX, _______,  _______, _______, _______, \
-    _______,  ALSFH_TAB, KC_UP,  ALT_TAB, _______,  _______, _______, KC_PSCR, KC_INS, KC_HOME, KC_PG_UP, _______, _______, _______,          _______,  _______, _______, _______, \
+    _______,  ALSFH_TAB, KC_UP,  ALT_TAB, _______,  _______, _______, KC_PSCR, KC_INS, KC_HOME, KC_PGUP, _______, _______, _______,          _______,  _______, _______, _______, \
     _______,  KC_LEFT,   KC_DOWN,KC_RIGHT, _______,  KC_CAPS, KC_ESC, KC_APP, _______, KC_END, KC_PGDN, _______, XXXXXXX, _______,          _______,  _______, _______, _______, \
     _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,   _______,   _______, _______,         KC_UP,    _______,  _______, _______, XXXXXXX, \
     _______,  _______, _______,                   _______,                               XXXXXXX, _______, _______,      KC_LEFT, KC_DOWN, KC_RGHT,      _______, _______, _______  \
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                                             _______,  _______, _______, _______, \
     _______,  _______,       _______,  _______,  _______,   _______,  _______,  _______,  _______, _______,  _______, _______,  _______,  _______, XXXXXXX, _______,  _______, _______, _______, \
     _______,  RESET, DEBUG,  _______,   _______,    _______,    _______,    _______,  _______, _______,  _______, _______, _______, _______,         _______,  _______,  _______, _______, \
-    _______,  BL_TOGGL, BL_STEP,  BL_ON,  BL_OFF, BL_INC, BL_DEC, BL_BRTG,  _______,  _______, _______, _______, XXXXXXX, _______,          _______,  _______,  _______, _______, \
+    _______,  BL_TOGG, BL_STEP,  BL_ON,  BL_OFF, BL_INC, BL_DEC, BL_BRTG,  _______,  _______, _______, _______, XXXXXXX, _______,          _______,  _______,  _______, _______, \
     _______,  XXXXXXX, _______,  _______,   _______,    _______,    _______,    _______,    _______,    _______, _______,  _______, _______,      KC_UP,      _______,   _______,  _______,   XXXXXXX, \
     _______,  _______, _______,                   _______,                               XXXXXXX, _______, _______,      KC_LEFT, KC_DOWN, KC_RGHT,      _______, _______, _______  \
   ),
@@ -250,9 +250,9 @@ void oled_task_user(void) {
         case BASE:
             oled_write_P(PSTR("Base\n"), false);
             break;
-        case FUNCTION:
+        /*case FUNCTION:
             oled_write_P(PSTR("Function\n"), false);
-            break;
+            break;*/
         default:
             // Or use the write_ln shortcut over adding '\n' to the end of your string
             oled_write_ln_P(PSTR("Undefined"), false);
