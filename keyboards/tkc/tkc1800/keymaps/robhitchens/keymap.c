@@ -31,7 +31,6 @@ enum layers {
   _RAISE,
   _SHIFTL,
   _ADJUST,
-  /*_FUNCK,*/
   _SPECL
 };
 
@@ -41,17 +40,16 @@ enum layers {
 };*/
 
 enum keycodes {
-  BASE = 0,
+  BASE = SAFE_RANGE,
   GAMEMODE,
   SPACEFN,
   LOWER,
   RAISE,
   SHIFTL,
   ADJUST,
-  SPECL,
-  /*FUNCK,*/
-  ALT_TAB,
-  ALSFH_TAB
+  SPECL
+  /*ALT_TAB,
+  ALSFH_TAB*/
 };
 
 #define SPACEFN MO(_SPACEFN)
