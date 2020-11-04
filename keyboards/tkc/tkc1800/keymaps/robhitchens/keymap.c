@@ -17,12 +17,12 @@
 #include QMK_KEYBOARD_H
 
 //Layers
-/*
+
 bool is_alt_tab_active = false;
 uint16_t alt_tab_timer = 0;
 bool is_shift_alt_tab_active = false;
 uint16_t shift_alt_tab_timer = 0;
-*/
+
 enum layers {
   _BASE,
   _GAMEMODE,
@@ -47,9 +47,9 @@ enum keycodes {
   RAISE,
   SHIFTL,
   ADJUST,
-  SPECL
-  /*ALT_TAB,
-  ALSFH_TAB*/
+  SPECL,
+  ALT_TAB,
+  ALSFH_TAB
 };
 
 #define SPACEFN MO(_SPACEFN)
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,                    _______,  _______, _______, _______, \
                                                                                                                                             _______,  _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, XXXXXXX, _______,  _______, _______, _______, \
-    _______,  _______, KC_UP,  _______, _______,  _______, _______, KC_PSCR, KC_INS, KC_HOME, KC_PGUP, _______, _______, _______,          _______,  _______, _______, _______, \
+    _______,  ALSFH_TAB, KC_UP, ALT_TAB, _______,  _______, _______, KC_PSCR, KC_INS, KC_HOME, KC_PGUP, _______, _______, _______,          _______,  _______, _______, _______, \
     _______,  KC_LEFT,   KC_DOWN,KC_RIGHT, _______,  KC_CAPS, KC_ESC, KC_APP, _______, KC_END, KC_PGDN, _______, XXXXXXX, _______,          _______,  _______, _______, _______, \
     _______,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______,   _______,   _______, _______,         KC_UP,    _______,  _______, _______, XXXXXXX, \
     _______,  _______, _______,                   _______,                               XXXXXXX, _______, _______,      KC_LEFT, KC_DOWN, KC_RGHT,      _______, _______, _______  \
@@ -173,7 +173,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-      /*
     case ALT_TAB:
         if(record->event.pressed){
             if(!is_alt_tab_active){
@@ -198,7 +197,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }else{
             unregister_code(KC_TAB);
         }
-        break;*/
+        break;
       /*
     case BACKLIT:
       if (record->event.pressed) {
@@ -220,7 +219,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
-/*
+
 void matrix_scan_user(void) {
     if(is_alt_tab_active){
         if(timer_elapsed(alt_tab_timer) > 500){
@@ -236,7 +235,7 @@ void matrix_scan_user(void) {
         }
     }
 }
-*/
+
 
 #ifdef OLED_DRIVER_ENABLE
 void oled_task_user(void) {
