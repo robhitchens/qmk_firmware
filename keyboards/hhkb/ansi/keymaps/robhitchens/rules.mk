@@ -14,7 +14,7 @@ BOOTLOADER = atmel-dfu
 # Build Options
 #   comment out to disable the options.
 #
-LINK_TIME_OPTIMIZATION_ENABLE = yes
+LTO_ENABLE = yes
 BOOTMAGIC_ENABLE = yes # Virtual DIP switch configuration
 MOUSEKEY_ENABLE = yes  # Mouse keys
 EXTRAKEY_ENABLE = yes  # Audio control and System control
