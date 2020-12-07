@@ -37,7 +37,6 @@ enum prime_e_keycodes {
     BASE = SAFE_RANGE,
     GAMEMODE,
     SPACEFN,
-    NUMHOME,
     ALT_TAB,
     ALSFH_TAB
 };
@@ -78,12 +77,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_LOWER] = LAYOUT(
 		_______,   KC_MS_WH_LEFT,     KC_MS_U,     KC_MS_WH_RIGHT,   _______,    _______,          _______,   _______,     _______, _______,    _______,    _______, _______,
 		_______,   KC_MS_L,     KC_MS_D,     KC_MS_R,   _______,    _______,          _______,   KC_MS_BTN1,     KC_MS_BTN2, _______,    _______, _______,
-		_______,  KC_MS_WH_UP,     KC_MS_BTN3,     KC_MS_WH_DWON,   _______,    _______,          _______,  _______,     _______, _______, _______,  _______, _______,
+		_______,  KC_MS_WH_UP,     KC_MS_BTN3,     KC_MS_WH_DOWN,   _______,    _______,          _______,  _______,     _______, _______, _______,  _______, _______,
 		_______,  _______,                    _______, _______,	       _______, _______,                          _______, _______
     ),
     [_RAISE] = LAYOUT(
 		_______,   ALSFH_TAB,     KC_UP,     ALT_TAB,   _______,    _______,          _______,   KC_PSCR,     KC_INS, KC_HOME,    KC_PGUP,    _______, _______,
-		_______,   KC_LEFT,     KC_DOWN,     KC_RIGHT,   _______,    KC_CAPS,          KC_ESC,   KC_APP,     XXXXXXX, KC_END,   KC_PGDN _______,
+		_______,   KC_LEFT,     KC_DOWN,     KC_RIGHT,   _______,    KC_CAPS,          KC_ESC,   KC_APP,     XXXXXXX, KC_END,    KC_PGDN, _______,
 		_______,  XXXXXXX,     XXXXXXX,     XXXXXXX,   _______,    _______,          _______,  _______,     XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX, _______,
 		_______,  _______,                    _______, _______,	       _______, _______,                          _______, _______
     ),
