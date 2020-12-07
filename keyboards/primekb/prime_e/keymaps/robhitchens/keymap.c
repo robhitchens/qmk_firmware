@@ -24,11 +24,11 @@ uint16_t macro_max_timer = 750;
 enum prime_e_layers {
     _BASE,
     _GAMEMODE,
-    _SPACEFN,
-    _NUMHOME,
     _LOWER,
     _RAISE,
     _SHIFTL,
+    _SPACEFN,
+    _NUMHOME,
     _ADJUST,
     _FUNCK
 };
@@ -36,7 +36,6 @@ enum prime_e_layers {
 enum prime_e_keycodes {
     BASE = SAFE_RANGE,
     GAMEMODE,
-    SPACEFN,
     ALT_TAB,
     ALSFH_TAB
 };
@@ -51,16 +50,16 @@ enum prime_e_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT(
-		KC_ESC,   KC_Q,     KC_W,     KC_E,   KC_R,    KC_T,          KC_Y,   KC_U,     KC_I, KC_O,    KC_P,    KC_DEL, KC_BSPC,
-		KC_TAB,   KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,   KC_J,     KC_K, KC_L,    KC_SCLN, KC_ENT,
+		KC_TAB,   KC_Q,     KC_W,     KC_E,   KC_R,    KC_T,          KC_Y,   KC_U,     KC_I, KC_O,    KC_P,    KC_DEL, KC_BSPC,
+		KC_LCTL,   KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,   KC_J,     KC_K, KC_L,    KC_SCLN, KC_ENT,
 		KC_LSFT,  KC_Z,     KC_X,     KC_C,   KC_V,    KC_B,          KC_QUOT,  KC_N,     KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_RGUI,
-		KC_LCTL,  KC_LALT,                    LOWER, TAPSPACE,	       SHIFTL, RAISE,                          KC_RALT, KC_RCTL
+		KC_ESC,  KC_LALT,                    LOWER, TAPSPACE,	       SHIFTL, RAISE,                          KC_RALT, KC_RCTL
     ),
     [_GAMEMODE] = LAYOUT(
-		KC_ESC,   KC_Q,     KC_W,     KC_E,   KC_R,    KC_T,          KC_Y,   KC_U,     KC_I, KC_O,    KC_P,    KC_DEL, KC_BSPC,
-		KC_TAB,   KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,   KC_J,     KC_K, KC_L,    KC_SCLN, KC_ENT,
+		KC_TAB,   KC_Q,     KC_W,     KC_E,   KC_R,    KC_T,          KC_Y,   KC_U,     KC_I, KC_O,    KC_P,    KC_DEL, KC_BSPC,
+		KC_LCTL,   KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,   KC_J,     KC_K, KC_L,    KC_SCLN, KC_ENT,
 		KC_LSFT,  KC_Z,     KC_X,     KC_C,   KC_V,    KC_B,          KC_QUOT,  KC_N,     KC_M, KC_COMM, KC_DOT,  KC_SLSH, GUISPACE,
-		KC_LCTL,  KC_LALT,                    LOWER, KC_SPC,	       SHIFTL, RAISE,                          KC_RALT, KC_RCTL
+		KC_ESC,  KC_LALT,                    LOWER, KC_SPC,	       SHIFTL, RAISE,                          KC_RALT, KC_RCTL
     ),
     [_SPACEFN] = LAYOUT(
 		_______,   KC_EXLM,     KC_AT,     KC_HASH,   KC_DLR,    KC_PERC,          KC_CIRC,   KC_AMPR,     KC_ASTR, KC_LPRN,    KC_RPRN,    _______, _______,
@@ -131,7 +130,7 @@ void matrix_scan_user(void) {
 
 layer_state_t layer_state_set_user(layer_state_t state){
     state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
-    state = update_tri_layer_state(state, _SPACEFN, _SHIFTL, _NUMHOME);
+    state = update_tri_layer_state(state, _SPACEFN, _RAISE, _NUMHOME);
     if (get_highest_layer(state) == 1) {
     writePinHigh(B3);
 	} else {
