@@ -8,6 +8,12 @@ extern rgblight_config_t rgblight_config;
 
 extern uint8_t is_master;
 
+bool is_alt_tab_active = false;
+uint16_t alt_tab_timer = 0;
+bool is_shift_alt_tab_active = false;
+uint16_t shift_alt_tab_timer = 0;
+uint16_t macro_max_timer = 750;
+
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -15,10 +21,11 @@ extern uint8_t is_master;
 enum layer_number {
   _QWERTY = 0,
   _GAMEMODE,
-  _SPACEFN,
-  _HOMENUM,
   _LOWER,
   _RAISE,
+  _SPACEFN,
+  _SHIFTL,
+  _HOMENUM,
   _ADJUST,
   _FUNCK
 };
@@ -30,13 +37,18 @@ enum custom_keycodes {
   LOWER,
   RAISE,
   ADJUST,
-  FUNCK
+  FUNCK,
+  ALT_TAB,
+  ALSFH_TAB
 };
 
+#define RAISE MO(_RAISE)
+#define LOWER MO(_LOWER)
+#define FUNCK MO(_FUNCK)
 #define SPACEFN MO(_SPACEFN)
 #define TAPSPACE LT(SPACEFN, KC_SPC)
-#define GUISPACE LT(SPACEFN, KC_LGUI)
-#define HOMENUM MO(_HOMENUM)
+#define SHIFTL MO(_SHIFTL)
+#define GUISPACE LT(SPACEFN, KC_RGUI)
 /*#define TAPLEFTARROW LT(LEFTARROWFN, KC_LEFT)*/
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -48,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+-------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------+--------+--------|
-                KC_LGUI, KC_ESC, KC_LALT,   FUNCK,   LOWER,TAPSPACE, KC_RSFT,   RAISE, HOMENUM, KC_RALT,  KC_ESC,KC_RGUI
+                KC_LGUI,   FUNCK, KC_LALT,  LOWER,TAPSPACE,  KC_ESC, KC_RCTL, KC_RSFT,   RAISE, KC_RALT,  FUNCK, KC_RGUI
           //`------------------------------------------------------------------------------------------------------------'
   ),
   [_GAMEMODE] = LAYOUT(
@@ -59,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+-------+--------+--------|
       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M, KC_COMM, KC_DOT, KC_SLSH,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+-------+--------+--------|
-                KC_ESC,GUISPACE, KC_LALT,   FUNCK,   LOWER,  KC_SPC, KC_RSFT,   RAISE, KC_LEFT, KC_DOWN,  KC_UP,KC_RIGHT
+                GUISPACE, FUNCK, KC_LALT,  LOWER,   KC_SPC,  KC_ESC, KC_RCTL, KC_RSFT,   RAISE, KC_RALT,  FUNCK, KC_RGUI
           //`------------------------------------------------------------------------------------------------------------'
   ),
   [_SPACEFN] = LAYOUT(
@@ -73,38 +85,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,_______, _______
           //`------------------------------------------------------------------------------------------------------------'
   ),
-//   [_QWERTY] = LAYOUT(//original default layer layout.
-//   //,-----------------------------------------------------|                 |-----------------------------------------------------.
-//        KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                      KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-//   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
-//        KC_ESC,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                      KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
-//   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
-//       KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                      KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
-//   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-//            MO(_ADJUST),KC_LCTRL, KC_LALT, KC_LGUI,MO(_LOWER),KC_SPC,KC_SPC,MO(_RAISE), KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT
-//           //`------------------------------------------------------------------------------------------------------------'
-//   ),
-
-
-
-//   [_LOWER] = LAYOUT(
-//   //,-----------------------------------------------------|                 |-----------------------------------------------------.
-//       KC_TILD, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                   KC_CIRC, KC_AMPR,  KC_ASTR,KC_LPRN, KC_RPRN,  KC_DEL,
-//   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
-//       _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                     KC_F6, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
-//   //|--------+--------+--------+--------+--------+--------|                 |--------+--------+--------+--------+--------+--------|
-//       _______,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,                    KC_F12,S(KC_NUHS),S(KC_NUBS),_______,_______,_______,
-//   //|--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------+--------|
-//                _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
-//           //`------------------------------------------------------------------------------------------------------------'
-//   ),
-
-//     [_FUNCK] = LAYOUT(
-//     KC_FN1, KC_FN2,   KC_FN3,  KC_FN4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9,  KC_F10, KC_F11, KC_F12,
-//     _______, KC_1, KC_2,  KC_3,   KC_4,  KC_5, KC_6, KC_7,  KC_8,  KC_9,  KC_0,  _______,
-//     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-//     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-// ),
 
 [_FUNCK] = LAYOUT( /* Base */
   //,-----------------------------------------------------|                 |-----------------------------------------------------.
@@ -135,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //   _______, _______, _______, _______, _______, KC_MS_BTN1, KC_MS_BTN2, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY
 // ),//TODO come back to this.
 [_HOMENUM] = LAYOUT(
-      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        KC_F11,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F12,
       _______,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -171,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                 |----------+-------+--------+--------+----------+--------|
       _______, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______,                     _______,_______, XXXXXXX, XXXXXXX, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------+--------+----------+-----------+--------+--------+----------+--------|
-               _______, _______, _______, _______, _______, _______, _______,   _______,_______, KC_VOLD, KC_VOLU, KC_MPLY
+               _______, _______, _______, _______, _______, _______, _______,   _______,_______, _______, _______, _______
           //`------------------------------------------------------------------------------------------------------------'
   ),
 
@@ -187,6 +167,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           //`------------------------------------------------------------------------------------------------------------'
   )
 };
+
+layer_state_t layer_state_set_user(layer_state_t state){
+    state = update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    state = update_tri_layer_state(state, _SPACEFN, _RAISE, _HOMENUM);
+    return state;
+}
 
 int RGB_current_mode;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -209,6 +195,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
         break;
     #endif
+    case ALT_TAB:
+        if(record->event.pressed){
+            if(!is_alt_tab_active){
+                is_alt_tab_active = true;
+                register_code(KC_LALT);
+            }
+            alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+        }else{
+            unregister_code(KC_TAB);
+        }
+        break;
+    case ALSFH_TAB:
+        if(record->event.pressed){
+            if(!is_shift_alt_tab_active){
+                is_shift_alt_tab_active = true;
+                register_code(KC_LALT);
+                register_code(KC_LSHIFT);
+            }
+            shift_alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+        }else{
+            unregister_code(KC_TAB);
+        }
+        break;
     case QWERTY:
         if(record->event.pressed){
             set_single_persistent_default_layer(_QWERTY);
@@ -221,6 +232,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
         return false;
         break;
+        /*
     case LOWER:
         if(record->event.pressed){
             layer_on(_LOWER);
@@ -246,12 +258,29 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         layer_off(_FUNCK);
       }
       break;
+      */
     default:
       result = true;
       break;
   }
 
   return result;
+}
+
+void matrix_scan_user(void){
+    if(is_alt_tab_active){
+        if(timer_elapsed(alt_tab_timer) > macro_max_timer){
+            unregister_code(KC_LALT);
+            is_alt_tab_active = false;
+        }
+    }
+    if(is_shift_alt_tab_active){
+        if(timer_elapsed(shift_alt_tab_timer) > macro_max_timer){
+            unregister_code(KC_LALT);
+            unregister_code(KC_LSHIFT);
+            is_shift_alt_tab_active = false;
+        }
+    }
 }
 
 void matrix_init_user(void) {
