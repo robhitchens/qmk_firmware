@@ -205,7 +205,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
                 shift_toggle = true;
                 register_code(KC_LSHIFT);
             }else{
-                SHIFT_TOGGL = false;
+                shift_toggle = false;
                 unregister_code(KC_LSHIFT);
             }
         }
