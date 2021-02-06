@@ -20,6 +20,7 @@ uint16_t alt_tab_timer = 0;
 bool is_shift_alt_tab_active = false;
 uint16_t shift_alt_tab_timer = 0;
 uint16_t macro_max_timer = 750;
+bool shift_toggle = false;
 
 enum prime_e_layers {
     _BASE,
@@ -37,7 +38,8 @@ enum prime_e_keycodes {
     BASE = SAFE_RANGE,
     GAMEMODE,
     ALT_TAB,
-    ALSFH_TAB
+    ALSFH_TAB,
+    SHIFT_TOGGL
 };
 
 #define RAISE MO(_RAISE)
@@ -93,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_ADJUST] = LAYOUT(
 		_______,   RESET,     DEBUG,     RGB_TOG,   RGB_MOD,    RGB_HUI,          RGB_HUD,   RGB_SAI,     RGB_SAD, RGB_VAI,    RGB_VAD,    _______, _______,
-		_______,   _______,     _______,     _______,   _______,    _______,          _______,   BASE,     GAMEMODE, _______,    _______, _______,
+		_______,   _______,     _______,     _______,   _______,SHIFT_TOGGL,          _______,   BASE,     GAMEMODE, _______,    _______, _______,
 		_______,  _______,     _______,     _______,   _______,    _______,          _______,  _______,     _______, _______, _______,  _______, _______,
 		_______,  _______,                    _______, _______,	       _______, _______,                          _______, _______
     ),
@@ -197,6 +199,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record){
             unregister_code(KC_TAB);
         }
         break;
+    case SHIFT_TOGGL:
+        if(record->event.pressed){
+            if(!shift_toggle){
+                shift_toggle = true;
+                register_code(KC_LSHIFT);
+            }else{
+                SHIFT_TOGGL = false;
+                unregister_code(KC_LSHIFT);
+            }
+        }
     case BASE:
         if(record->event.pressed){
             set_single_persistent_default_layer(_BASE);
