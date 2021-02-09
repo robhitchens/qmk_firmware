@@ -56,15 +56,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_ortho_5x14(
   KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_PGUP,       KC_PGDN,     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, \
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_LEFT,       KC_RIGHT,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, \
-  KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_DOWN,       KC_UP,       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,  \
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MS_WH_DOWN, KC_MS_WH_UP, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT, \
+  KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_DOWN,       KC_UP,       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,  \
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_DQUO,       KC_QUOTE,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
   KC_LALT, KC_LGUI, FUNCK,   KC_LALT, LOWER,   TAPSPACE,TAPSPACE,      KC_RSFT,     KC_RSFT, RAISE,   KC_RALT, FUNCK,   KC_RGUI, KC_RALT  \
 ),
 [_GAMEMODE] = LAYOUT_ortho_5x14(
   KC_ESC,  KC_1,     KC_2,    KC_3,    KC_4,    KC_5,    KC_PGUP,       KC_PGDN,     KC_6,    KC_7,  KC_8,    KC_9,    KC_0,     KC_DEL, \
   KC_TAB,  KC_Q,     KC_W,    KC_E,    KC_R,    KC_T,    KC_LEFT,       KC_RIGHT,    KC_Y,    KC_U,  KC_I,    KC_O,    KC_P,     KC_BSPC, \
-  KC_LCTL, KC_A,     KC_S,    KC_D,    KC_F,    KC_G,    KC_DOWN,       KC_UP,       KC_H,    KC_J,  KC_K,    KC_L,    KC_SCLN,  KC_QUOT,  \
-  KC_LSFT, KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_MS_WH_DOWN, KC_MS_WH_UP, KC_N,    KC_M,  KC_COMM, KC_DOT,  KC_SLSH,  KC_ENT, \
+  KC_LCTL, KC_A,     KC_S,    KC_D,    KC_F,    KC_G,    KC_DOWN,       KC_UP,       KC_H,    KC_J,  KC_K,    KC_L,    KC_SCLN,  KC_ENT,  \
+  KC_LSFT, KC_Z,     KC_X,    KC_C,    KC_V,    KC_B,    KC_DQUO,       KC_QUOTE, KC_N,    KC_M,  KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT, \
   KC_LALT, GUISPACE, KC_LALT, LOWER,   FUNCK,   KC_SPC,  KC_SPC,        KC_RSFT,     KC_RSFT, RAISE, FUNCK,   KC_RALT, GUISPACE, KC_RALT  \
 ),
 [_SPACEFN] = LAYOUT_ortho_5x14(
@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  \
   _______, KC_MS_WH_LEFT,   KC_MS_U,KC_MS_WH_RIGHT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, KC_MS_L,    KC_MS_D,    KC_MS_R, _______, _______, _______, _______, _______, KC_MS_BTN1, KC_MS_BTN2, _______, _______, _______,  \
-  _______, KC_MS_WH_DOWN, KC_MS_BTN3, KC_MS_WH_UP, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, KC_MS_WH_UP, KC_MS_BTN3, KC_MS_WH_DOWN, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______  \
 ),
 [_RAISE] = LAYOUT_ortho_5x14(
@@ -90,7 +90,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_ADJUST] = LAYOUT_ortho_5x14(
   _______, QWERTY, GAMEMODE, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  \
-  _______,  RESET, DEBUG, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD ,_______, _______, _______, \
+  _______,  RESET, DEBUG,    RGB_TOG,  RGB_MOD, RGB_HUI, _______, _______, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD,  _______,  \
   _______, _______,   _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  \
   _______, _______,   _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  \
   _______, _______,   _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______  \
