@@ -31,7 +31,7 @@ enum layers {
 };
 
 enum keycodes {
-  BASE = SAFE_RANGE,
+  BASE,
   GAMEMODE,
   SPACEFN,
   LOWER,
