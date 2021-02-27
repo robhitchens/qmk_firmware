@@ -31,12 +31,12 @@ enum layers {
 };
 
 enum keycodes {
-  BASE,
+  BASE = SAFE_RANGE,
   GAMEMODE,
-  SPACEFN,
-  LOWER,
-  RAISE,
-  SHIFTL,
+  //SPACEFN,
+  //LOWER,
+  //RAISE,
+  //SHIFTL,
   ADJUST,
   ALT_TAB,
   ALSFH_TAB
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS,  KC_TRNS,        KC_TRNS,      KC_TRNS,     KC_TRNS,       KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS,     KC_TRNS,                      KC_UP,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  KC_TRNS,        KC_TRNS,                                KC_TRNS,                                               KC_TRNS, KC_TRNS,       KC_LEFT, KC_DOWN, KC_RGHT,          KC_TRNS, KC_TRNS, KC_TRNS),
 
-[_RAISE] = LAYOUT_ansi( /* Base */
+[_SHIFTL] = LAYOUT_ansi( /* Base */
     KC_TRNS,  KC_TRNS,        KC_TRNS,      KC_TRNS,     KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS,  KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,                           KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  S(KC_Q),        S(KC_W),      S(KC_E),     S(KC_R),       S(KC_T), S(KC_Y), S(KC_U),   S(KC_I),   S(KC_O),  S(KC_P),   S(KC_LBRC), S(KC_RBRC), KC_TRNS,                                     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  S(KC_A),        S(KC_S),      S(KC_D),     S(KC_F),       S(KC_G), S(KC_H), S(KC_J),   S(KC_K),   S(KC_L),  S(KC_COLN),S(KC_QUOT),         KC_TRNS,                                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
