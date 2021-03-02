@@ -23,6 +23,7 @@ uint16_t shift_alt_tab_timer = 0;
 enum layers {
   _BASE,
   _GAMEMODE,
+  _MOUSEPAD,
   _SPACEFN,
   _LOWER,
   _RAISE,
@@ -33,6 +34,7 @@ enum layers {
 enum keycodes {
   BASE = SAFE_RANGE,
   GAMEMODE,
+  MOUSEPAD,
   //SPACEFN,
   //LOWER,
   //RAISE,
@@ -65,6 +67,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT,            KC_Z,     KC_X,  KC_C,  KC_V,  KC_B,    KC_N,  KC_M,  KC_COMM,  KC_DOT,   KC_SLSH,       KC_RSFT,                      KC_UP,              KC_P1,   KC_P2,   KC_P3,   KC_TRNS,
     GUISPACE,  KC_LALT,  LOWER,                        KC_SPC,                                                RAISE, KC_RALT,           KC_LEFT, KC_DOWN, KC_RGHT,          KC_P0,   KC_PDOT, KC_PENT),
 
+[_MOUSEPAD] = LAYOUT_ansi( /* Base */
+    KC_ESC,   KC_1,     KC_2,     KC_3,  KC_4,  KC_5,  KC_6,    KC_7,  KC_8,  KC_9,     KC_0,     KC_MINS,  KC_EQL,  KC_BSLS, KC_GRV,                              KC_TRNS,      KC_TRNS,   KC_TRNS,       KC_TRNS,
+    KC_TAB,   KC_Q,     KC_W,     KC_E,  KC_R,  KC_T,  KC_Y,    KC_U,  KC_I,  KC_O,     KC_P,     KC_LBRC,  KC_RBRC, KC_BSPC,                                      KC_MS_WH_UP,  KC_MS_U,   KC_MS_WH_DOWN, KC_TRNS,
+    KC_LCTL,  KC_A,     KC_S,     KC_D,  KC_F,  KC_G,  KC_H,    KC_J,  KC_K,  KC_L,     KC_SCLN,  KC_QUOT,           KC_ENT,                                       KC_MS_L,      KC_MS_D,   KC_MS_R,       KC_MS_BTN1,
+    KC_LSFT,            KC_Z,     KC_X,  KC_C,  KC_V,  KC_B,    KC_N,  KC_M,  KC_COMM,  KC_DOT,   KC_SLSH,       KC_RSFT,                      KC_UP,              KC_MS_WH_LEFT,KC_MS_BTN3,KC_MS_WH_RIGHT,KC_TRNS,
+    KC_LGUI,  KC_LALT,  LOWER,                       TAPSPACE,                                                RAISE, KC_RALT,           KC_LEFT, KC_DOWN, KC_RGHT,          KC_MS_BTN1,   KC_MS_BTN2, KC_MS_BTN2),
+
 [_SPACEFN] = LAYOUT_ansi( /* Base */
     KC_ESC,   KC_F1,    KC_F2,    KC_F3,   KC_F4,  KC_F5,   KC_F6,   KC_F7,  KC_F8,  KC_F9,   KC_F10,   KC_F11,   KC_F12,  KC_PIPE, KC_TRNS,                             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  KC_EXLM,  KC_AT,    KC_HASH, KC_DLR, KC_PERC, KC_CIRC, KC_AMPR,KC_ASTR,KC_LPRN, KC_RPRN,  KC_LCBR,  KC_RCBR, KC_TRNS,                                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -81,9 +90,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_RAISE] = LAYOUT_ansi( /* Base */
     KC_TRNS,  KC_TRNS,        KC_TRNS,      KC_TRNS,     KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,                           KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,  ALSFH_TAB,      KC_UP,        ALT_TAB,     KC_TRNS,       KC_TRNS, KC_TRNS, KC_PSCR,   KC_INS,    KC_HOME, KC_PGUP,  KC_TRNS, KC_TRNS, KC_TRNS,                                     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS,  ALSFH_TAB,      KC_UP,        ALT_TAB,     KC_TRNS,       KC_TRNS, KC_DEL,  KC_PSCR,   KC_INS,    KC_HOME, KC_PGUP,  KC_TRNS, KC_TRNS, KC_TRNS,                                     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  KC_LEFT,        KC_DOWN,      KC_RIGHT,    KC_TRNS,       KC_CAPS, KC_ESC,  KC_APP,    KC_TRNS,   KC_END,  KC_PGDN,  KC_TRNS,         KC_TRNS,                                      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,  KC_TRNS,        KC_TRNS,      KC_TRNS,     KC_TRNS,       KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS,     KC_TRNS,                      KC_UP,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS,  KC_TRNS,        KC_TRNS,      KC_TRNS,     KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS,                      KC_UP,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  KC_TRNS,        KC_TRNS,                                KC_TRNS,                                               KC_TRNS, KC_TRNS,       KC_LEFT, KC_DOWN, KC_RGHT,          KC_TRNS, KC_TRNS, KC_TRNS),
 
 [_SHIFTL] = LAYOUT_ansi( /* Base */
@@ -93,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRNS,  S(KC_Z),        S(KC_X),      S(KC_C),     S(KC_V),       S(KC_B), S(KC_N), S(KC_M),   S(KC_COMM),S(KC_DOT),S(KC_SLSH),     KC_TRNS,                      KC_UP,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  KC_TRNS,        KC_TRNS,                                KC_TRNS,                                               KC_TRNS, KC_TRNS,       KC_LEFT, KC_DOWN, KC_RGHT,          KC_TRNS, KC_TRNS, KC_TRNS),
 [_ADJUST] = LAYOUT_ansi( /* Base */
-    KC_TRNS,  BASE,    GAMEMODE, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,                                    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS,  BASE,    GAMEMODE, MOUSEPAD, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS,                                    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  RESET,   DEBUG,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS,                                              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,         KC_TRNS,                                               KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS,  KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,                                            KC_UP,              KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
@@ -137,6 +146,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case MOUSEPAD:
+        if(record->event.pressed){
+            print("mode just switched to mousepad");
+            set_single_persistent_default_layer(_MOUSEPAD);
+        }
+        return false;
+        break;
     case ALT_TAB:
         if(record->event.pressed){
             if(!is_alt_tab_active){
