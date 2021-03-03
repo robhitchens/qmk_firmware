@@ -72,32 +72,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     */
     [_BASE] = LAYOUT_2u(
 		KC_TAB,   KC_Q,     KC_W,     KC_E,   KC_R,    KC_T,          KC_Y,    KC_U, KC_I,    KC_O,    KC_P,    KC_BSPC,
-		KC_LCTL,  KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,    KC_J, KC_K,    KC_L,    KC_SCLN, KC_ENT,
-		KC_LSFT,  KC_Z,     KC_X,     KC_C,   KC_V,    KC_B,          KC_N,    KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_QUOT,
+		KC_LCTL,  KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,    KC_J, KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+		KC_LSFT,  KC_Z,     KC_X,     KC_C,   KC_V,    KC_B,          KC_N,    KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
 	    KC_LALT,                      LOWER,  TAPSPACE,	              SHIFTL,        RAISE,                     KC_RALT
     ),
     [_GAMEMODE] = LAYOUT_2u(
 		KC_TAB,   KC_Q,     KC_W,     KC_E,   KC_R,    KC_T,          KC_Y,   KC_U, KC_I,    KC_O,    KC_P,    KC_BSPC,
-		KC_LCTL,  KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,   KC_J, KC_K,    KC_L,    KC_SCLN, KC_ENT,
-		KC_LSFT,  KC_Z,     KC_X,     KC_C,   KC_V,    KC_B,          KC_N,   KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_QUOT,
+		KC_LCTL,  KC_A,     KC_S,     KC_D,   KC_F,    KC_G,          KC_H,   KC_J, KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+		KC_LSFT,  KC_Z,     KC_X,     KC_C,   KC_V,    KC_B,          KC_N,   KC_M, KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
 		KC_LALT,                      LOWER,           KC_SPC,	      SHIFTL,       RAISE,                     GUISPACE
     ),
     [_SPACEFN] = LAYOUT_2u(
 		_______,  KC_EXLM,     KC_AT,     KC_HASH,   KC_DLR,    KC_PERC,          KC_CIRC,   KC_AMPR, KC_ASTR, KC_LPRN,  KC_RPRN, _______,
-		_______,  XXXXXXX,     KC_GRV,    KC_MINS,   KC_EQL,    KC_BSLS,          KC_PIPE,   KC_LBRC, KC_RBRC, XXXXXXX,  KC_COLN, _______,
-		_______,  XXXXXXX,     KC_TILD,   KC_UNDS,   KC_PLUS,   XXXXXXX,          KC_LCBR,   KC_RCBR, KC_LT,   KC_GT,    KC_QUES, KC_DQUO,
+		_______,  XXXXXXX,     KC_GRV,    KC_MINS,   KC_EQL,    KC_BSLS,          KC_PIPE,   KC_LBRC, KC_RBRC, XXXXXXX,  KC_COLN, KC_DQUO,
+		_______,  XXXXXXX,     KC_TILD,   KC_UNDS,   KC_PLUS,   XXXXXXX,          KC_LCBR,   KC_RCBR, KC_LT,   KC_GT,    KC_QUES, _______,
 		_______,                            _______,            _______,	      _______,            _______,                    _______
     ),
     [_SHIFTL] = LAYOUT_2u(
 		_______,  S(KC_Q), S(KC_W),     S(KC_E),   S(KC_R),    S(KC_T),          S(KC_Y),   S(KC_U), S(KC_I),    S(KC_O),    S(KC_P),    _______,
-		_______,  S(KC_A), S(KC_S),     S(KC_D),   S(KC_F),    S(KC_G),          S(KC_H),   S(KC_J), S(KC_K),    S(KC_L),    S(KC_SCLN), _______,
-		_______,  S(KC_Z), S(KC_X),     S(KC_C),   S(KC_V),    S(KC_B),          S(KC_N),   S(KC_M), S(KC_COMM), S(KC_DOT),  S(KC_SLSH), S(KC_QUOT),
+		_______,  S(KC_A), S(KC_S),     S(KC_D),   S(KC_F),    S(KC_G),          S(KC_H),   S(KC_J), S(KC_K),    S(KC_L),    S(KC_SCLN), S(KC_QUOT),
+		_______,  S(KC_Z), S(KC_X),     S(KC_C),   S(KC_V),    S(KC_B),          S(KC_N),   S(KC_M), S(KC_COMM), S(KC_DOT),  S(KC_SLSH), _______,
 		_______,                        _______,               _______,	         _______,   _______,                                     _______
     ),
     [_LOWER] = LAYOUT_2u(
-		_______,  KC_MS_WH_LEFT, KC_MS_U,     KC_MS_WH_RIGHT,   _______,    _______,          _______,   _______,     _______,    _______, _______, _______,
+		_______,  KC_MS_WH_UP,   KC_MS_U,     KC_MS_WH_DOWN,    _______,    _______,          _______,   _______,     _______,    _______, _______, _______,
 		_______,  KC_MS_L,       KC_MS_D,     KC_MS_R,          _______,    _______,          _______,   KC_MS_BTN1,  KC_MS_BTN2, _______, _______, _______,
-		_______,  KC_MS_WH_UP,   KC_MS_BTN3,  KC_MS_WH_DOWN,    _______,    _______,          _______,   _______,     _______,    _______, _______, _______,
+		_______,  KC_MS_WH_LEFT, KC_MS_BTN3,  KC_MS_WH_RIGHT,   _______,    _______,          _______,   _______,     _______,    _______, _______, _______,
 		_______,                              _______,                      _______,	      _______,                _______,                      _______
     ),
     [_RAISE] = LAYOUT_2u(
