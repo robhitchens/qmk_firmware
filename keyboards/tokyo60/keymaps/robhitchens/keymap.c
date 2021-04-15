@@ -14,6 +14,8 @@ enum tokyo60_layers {
     _LOWER,
     _RAISE,
     _SHIFTL,
+    _SHIFTLEFT,
+    _SHIFTRIGHT,
     _ADJUST,
     _FUNCK
 };
@@ -32,6 +34,8 @@ enum tokyo60_keycodes {
 #define FUNCK MO(_FUNCK)
 #define SPACEFN MO(_SPACEFN)
 #define TAPSPACE LT(SPACEFN, KC_SPC)
+#define J_SHIFT LT(MO(_SHIFTLEFT), KC_J)
+#define F_SHIFT LT(MO(_SHIFTRIGHT), KC_F)
 #define GUISPACE LT(SPACEFN, KC_RGUI)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -55,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_60_hhkb( //  default layer
         KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINS, KC_EQL, KC_BSLS, KC_GRV,
         KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_LBRC, KC_RBRC, KC_BSPC,
-        KC_LCTL, KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
+        KC_LCTL, KC_A, KC_S, KC_D, F_SHIFT, KC_G, KC_H, J_SHIFT, KC_K, KC_L, KC_SCLN, KC_QUOT, KC_ENT,
         KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, KC_RSFT, KC_RGUI,
         KC_LALT, LOWER, /*        */ TAPSPACE, RAISE, KC_RALT
     ),
@@ -95,6 +99,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, /*        */ _______, _______, _______
     ),
 
+    [_SHIFTLEFT] = LAYOUT_60_hhkb( //  default layer
+        _______, S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), _______, _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), _______, _______, _______, _______, _______, _______, _______,
+        _______, S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, /*        */ _______, _______, _______
+    ),
+    [_SHIFTRIGHT] = LAYOUT_60_hhkb( //  default layer
+        _______, _______, _______, _______, _______, _______, S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), S(KC_MINS), S(KC_EQL), S(KC_BSLS), S(KC_GRV),
+        _______, _______, _______, _______, _______, _______, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), S(KC_LBRC), S(KC_RBRC), _______,
+        _______, _______, _______, _______, _______, _______, S(KC_H), S(KC_J), S(KC_K), S(KC_L), S(KC_SCLN), S(KC_QUOT), _______,
+        _______, _______, _______, _______, _______, _______, S(KC_N), S(KC_M), S(KC_COMM), S(KC_DOT), S(KC_SLSH), _______, _______,
+        _______, _______, /*        */ _______, _______, _______
+    ),
     [_ADJUST] = LAYOUT_60_hhkb( //  default layer
         _______,    BASE, GAMEMODE, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______,   RESET,    DEBUG, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, _______,
