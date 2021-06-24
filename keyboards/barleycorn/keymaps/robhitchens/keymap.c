@@ -35,10 +35,6 @@ enum keycodes {
   BASE = SAFE_RANGE,
   GAMEMODE,
   MOUSEPAD,
-  //SPACEFN,
-  //LOWER,
-  //RAISE,
-  //SHIFTL,
   ADJUST,
   ALT_TAB,
   ALSFH_TAB
