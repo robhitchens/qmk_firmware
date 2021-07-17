@@ -55,16 +55,16 @@ enum planck_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = LAYOUT(
-    KC_MS_BTN1, KC_TAB,    KC_Q,    KC_W,  KC_E,  KC_R,     KC_T,     KC_Y,  KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-    KC_MS_BTN2, KC_LCTL,    KC_A,    KC_S,  KC_D,  KC_F,     KC_G,     KC_H,  KC_J,    KC_K,    KC_L, KC_SCLN, KC_ENT,
-    KC_MS_BTN3, KC_LSFT,    KC_Z,    KC_X,  KC_C,  KC_V,     KC_B,     KC_N,  KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT,
-    KC_MS_BTN3, KC_LALT, KC_LGUI, KC_LALT, FUNCK, LOWER, TAPSPACE, RAISE, HOMENUM, KC_RALT,   KC_RGUI, KC_RALT
+    KC_MS_BTN1,     KC_TAB,    KC_Q,    KC_W,  KC_E,  KC_R,     KC_T,     KC_Y,  KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+    KC_MS_BTN2,     KC_LCTL,    KC_A,    KC_S,  KC_D,  KC_F,     KC_G,     KC_H,  KC_J,    KC_K,    KC_L, KC_SCLN, KC_ENT,
+    KC_MS_WH_UP,    KC_LSFT,    KC_Z,    KC_X,  KC_C,  KC_V,     KC_B,     KC_N,  KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_RSFT,
+    KC_MS_WH_DOWN,  KC_LALT, KC_LGUI, KC_LALT, FUNCK, LOWER, TAPSPACE, RAISE, HOMENUM, KC_RALT,   KC_RGUI, KC_RALT
 ),
 [_GAMEMODE] = LAYOUT(
-    KC_MS_BTN1, KC_TAB,     KC_Q,    KC_W,  KC_E,  KC_R,     KC_T,     KC_Y,  KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
-    KC_MS_BTN2, KC_LCTL,     KC_A,    KC_S,  KC_D,  KC_F,     KC_G,     KC_H,  KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
-    KC_MS_BTN3, KC_LSFT,     KC_Z,    KC_X,  KC_C,  KC_V,     KC_B,     KC_N,  KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
-    KC_MS_BTN3, KC_ESC, GUISPACE, FUNCK, FUNCK, LOWER,   KC_SPC, RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
+    KC_MS_BTN1,    KC_TAB,     KC_Q,    KC_W,  KC_E,  KC_R,     KC_T,     KC_Y,  KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+    KC_MS_BTN2,    KC_LCTL,     KC_A,    KC_S,  KC_D,  KC_F,     KC_G,     KC_H,  KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
+    KC_MS_WH_UP,   KC_LSFT,     KC_Z,    KC_X,  KC_C,  KC_V,     KC_B,     KC_N,  KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_ENT,
+    KC_MS_WH_DOWN, KC_ESC, GUISPACE, FUNCK, FUNCK, LOWER,   KC_SPC, RAISE, KC_LEFT, KC_DOWN,   KC_UP, KC_RGHT
 ),
 [_SPACEFN] = LAYOUT(
     _______, KC_TAB, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN,  _______,
